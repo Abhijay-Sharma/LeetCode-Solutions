@@ -10,32 +10,26 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        first=l1
-        second=l2
-        carry=0
-        new=ListNode()
-        temp=new
-        while first or second:
-            result=carry
-            if first:
-                result+=first.val
-                first=first.next
-            if second:
-                result+=second.val
-                second=second.next
-            carry=result//10
-            temp.val=result%10
-            if not (first or second):
-                if carry==0:
-                    break
-                else:
-                    temp.next=ListNode()
-                    temp=temp.next
-                    temp.val=carry
-                    break
-
-            temp.next=ListNode()
-            temp=temp.next
-        return new
+        a,b=l1,l2
+        carry,summ=0,0
+        answer=ListNode()
+        x=answer
+        while a or b or carry:
+            summ+=carry
+            carry=0
+            if a:
+                summ+=a.val
+                a=a.next
+            if b:
+                summ+=b.val
+                b=b.next
+            carry=summ//10
+            x.val=summ%10
+            if a or b or carry:
+                x.next=ListNode()
+                x=x.next
+            summ=0
+            
+        return answer
 
 
